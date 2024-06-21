@@ -1,0 +1,27 @@
+{
+  "bugs": "https://github.com/MemechiKekamoto/quantumfusion-frontend/issues",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/MemechiKekamoto/quantumfusion-frontend/tree/master/packages/page-contracts#readme",
+  "license": "Apache-2.0",
+  "name": "@polkadot/app-contracts",
+  "private": true,
+  "repository": {
+    "directory": "packages/page-contracts",
+    "type": "git",
+    "url": "https://github.com/MemechiKekamoto/quantumfusion-frontend.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.138.2-22-x",
+  "dependencies": {
+    "@polkadot/api-contract": "^11.1.1",
+    "eventemitter3": "^5.0.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
+  }
+}

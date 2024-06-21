@@ -1,0 +1,29 @@
+{
+  "bugs": "https://github.com/MemechiKekamoto/quantumfusion-frontend/issues",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/MemechiKekamoto/quantumfusion-frontend/tree/master/packages/page-bounties#readme",
+  "license": "Apache-2.0",
+  "name": "@polkadot/app-bounties",
+  "private": true,
+  "repository": {
+    "directory": "packages/page-bounties",
+    "type": "git",
+    "url": "https://github.com/MemechiKekamoto/quantumfusion-frontend.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.138.2-22-x",
+  "dependencies": {
+    "@polkadot/react-components": "^0.138.2-22-x"
+  },
+  "devDependencies": {
+    "@polkadot/test-support": "0.138.2-22-x"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*",
+    "react-is": "*"
+  }
+}
