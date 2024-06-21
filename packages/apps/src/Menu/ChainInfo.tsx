@@ -27,7 +27,8 @@ function ChainInfo ({ className }: Props): React.ReactElement<Props> {
         className={`apps--SideBar-logo-inner${canToggle ? ' isClickable' : ''} highlight--color-contrast`}
         onClick={toggleEndpoints}
       >
-        <ChainImg />
+        {/* <ChainImg /> */}
+        <img src="/favicon.ico" width={42} height={42} style={{objectFit: "contain", borderRadius: "42px"}}/>
         <div className='info media--1000'>
           <Chain className='chain' />
           {runtimeVersion && (
