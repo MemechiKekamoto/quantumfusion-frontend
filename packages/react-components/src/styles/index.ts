@@ -18,19 +18,20 @@ const FACTORS = [0.2126, 0.7152, 0.0722];
 const PARTS = [0, 2, 4];
 const VERY_DARK = 16;
 
-const defaultHighlight = '#dc0839';
+const defaultHighlight = 'var(--bg-page)';
+const specificHighlight = '#dc0839';
 
-function getHighlight (uiHighlight: string | undefined): string {
+function getHighlight(uiHighlight: string | undefined): string {
   return (uiHighlight || defaultHighlight);
 }
 
-function countBrightness (uiHighlight: string | undefined): number {
+function countBrightness(uiHighlight: string | undefined): number {
   const hc = getHighlight(uiHighlight).replace('#', '').toLowerCase();
 
   return PARTS.reduce((b, p, index) => b + (parseInt(hc.substring(p, p + 2), 16) * FACTORS[index]), 0);
 }
 
-function getContrast (uiHighlight: string | undefined): string {
+function getContrast(uiHighlight: string | undefined): string {
   const brightness = countBrightness(uiHighlight);
 
   return brightness > BRIGHTNESS
@@ -38,7 +39,7 @@ function getContrast (uiHighlight: string | undefined): string {
     : 'rgba(255, 253, 251, 0.875)';
 }
 
-function getMenuHoverContrast (uiHighlight: string | undefined): string {
+function getMenuHoverContrast(uiHighlight: string | undefined): string {
   const brightness = countBrightness(uiHighlight);
 
   if (brightness < VERY_DARK) {
@@ -50,7 +51,7 @@ function getMenuHoverContrast (uiHighlight: string | undefined): string {
     : 'rgba(255, 255, 255, 0.15)';
 }
 
-function hexToRGB (hex: string, alpha?: string) {
+function hexToRGB(hex: string, alpha?: string) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
@@ -63,7 +64,7 @@ function hexToRGB (hex: string, alpha?: string) {
 export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   .highlight--all {
     background: ${getHighlight(uiHighlight)} !important;
-    border-color: ${getHighlight(uiHighlight)} !important;
+    border-color: ${getHighlight(specificHighlight)} !important;
     color: ${getHighlight(uiHighlight)} !important;
   }
 
@@ -72,7 +73,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   }
 
   .highlight--before-border:before {
-    border-color: ${getHighlight(uiHighlight)} !important;
+    border-color: ${getHighlight(specificHighlight)} !important;
   }
 
   .highlight--bg {
@@ -130,7 +131,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   }
 
   .highlight--border {
-    border-color: ${getHighlight(uiHighlight)} !important;
+    border-color: ${getHighlight(specificHighlight)} !important;
   }
 
   .highlight--color {
@@ -138,7 +139,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   }
 
   .highlight--color-contrast {
-    color: ${getContrast(uiHighlight)};
+    color: var(--color-text);
   }
 
   .highlight--fill {
@@ -160,7 +161,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
 
   .menuItems li:hover .groupHdr {
     background: ${getMenuHoverContrast(uiHighlight)};
-    color: ${getContrast(uiHighlight)};
+    color: var(--color-text);
   }
 
   .groupMenu {
@@ -168,10 +169,10 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
 
     &::before {
       background: ${getMenuHoverContrast(uiHighlight)};
-      color:  ${getContrast(uiHighlight)};
+      color: var(--color-text);
     }
     li {
-      color:  ${getContrast(uiHighlight)};
+      color: var(--color-text);
     }
   }
 
@@ -272,7 +273,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
       background: ${getHighlight(uiHighlight)};
 
       &::before {
-        border-color: ${getHighlight(uiHighlight)};
+        border-color: ${getHighlight(specificHighlight)};
       }
     }
   }
@@ -280,7 +281,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   .ui--Sort {
     .ui--Labelled.ui--Dropdown:hover {
      .ui.selection.dropdown {
-        border-color: ${getHighlight(uiHighlight)};
+        border-color: ${getHighlight(specificHighlight)};
 
        .visible.menu {
          border: 1px solid ${getHighlight(uiHighlight)};
@@ -289,7 +290,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
     }
 
     button:hover {
-      border-color: ${getHighlight(uiHighlight)};
+      border-color: ${getHighlight(specificHighlight)};
     }
 
     button:hover,
@@ -308,7 +309,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   .theme--dark,
   .theme--light {
     .ui--Tabs .active .tabLinkText::after {
-      background: ${getHighlight(uiHighlight)};
+      background: ${getHighlight(specificHighlight)};
     }
 
     .ui.primary.button,
@@ -319,7 +320,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
       &:active,
       &:focus,
       &:hover {
-        background-color: ${getHighlight(uiHighlight)};
+        background-color: ${getHighlight(specificHighlight)};
       }
     }
 
@@ -329,7 +330,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
           background: ${getHighlight(uiHighlight)} !important;
 
           &:before {
-            border-color: ${getHighlight(uiHighlight)} !important;
+            border-color: ${getHighlight(specificHighlight)} !important;
           }
         }
       }
@@ -337,7 +338,7 @@ export default createGlobalStyle<Props>(({ uiHighlight }: Props) => `
   }
 
   .ui--ExpandButton:hover {
-    border-color: ${getHighlight(uiHighlight)} !important;
+    border-color: ${getHighlight(specificHighlight)} !important;
 
     .ui--Icon {
       color: ${getHighlight(uiHighlight)} !important;

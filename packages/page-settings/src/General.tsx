@@ -110,7 +110,7 @@ function General ({ className = '' }: Props): React.ReactElement<Props> {
 
   const _save = useCallback(
     (): void => {
-      save(state);
+      saveAndReload(state);
       setChanged(null);
     },
     [state]

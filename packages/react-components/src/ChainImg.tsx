@@ -2,11 +2,14 @@
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import type { SettingsStruct } from '@polkadot/ui-settings/types';
 
 import { createWsEndpoints } from '@polkadot/apps-config';
 import { externalEmptySVG } from '@polkadot/apps-config/ui/logos/external';
 import { useApi } from '@polkadot/react-hooks';
+import { settings } from '@polkadot/ui-settings';
 
 import Icon from './Icon.js';
 import { styled } from './styled.js';
@@ -38,6 +41,16 @@ function ChainImg ({ className = '', isInline, logo, onClick, withoutHl }: Props
 
   const iconClassName = `${className} ui--ChainImg ${(isEmpty && !withoutHl) ? 'highlight--bg' : ''} ${isInline ? 'isInline' : ''}`;
 
+  const [state, setSettings] = useState((): SettingsStruct => {
+    const values = settings.get();
+
+    return { ...values, uiTheme: values.uiTheme === 'dark' ? 'dark' : 'light' };
+  });
+
+  useEffect(() => {
+    console.log("uiTheme", state.uiTheme)
+  }, [settings])
+
   return isFa
     ? (
       <StyledIcon
@@ -50,7 +63,7 @@ function ChainImg ({ className = '', isInline, logo, onClick, withoutHl }: Props
         alt='chain logo'
         className={iconClassName}
         onClick={onClick}
-        src={img as string}
+        src={state.uiTheme == "light" ? "/favicon.ico" : "/favicon_white.ico"}
       />
     );
 }

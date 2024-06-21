@@ -57,7 +57,7 @@ const StyledNavLink = styled(NavLink)`
     color: #8B8B8B;
 
     .tabLinkText::after {
-      background-color: #8B8B8B;
+      background-color: #dc0839;
     }
   }
 

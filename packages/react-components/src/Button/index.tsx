@@ -87,6 +87,9 @@ const StyledButton = styled.button`
   position: relative;
   vertical-align: middle;
   text-align: center;
+  .ui--Icon {
+    color: var(--color-text);
+  }
 
   &:not(.hasLabel) {
     padding: 0.7em;
